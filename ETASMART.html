@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<title>CONVERSOR DE ETANOL</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+
+/*Função 1*/
+function carregavalores(){
+document.getElementById("campo1").value=93;
+document.getElementById("campo2").value=73;
+document.getElementById("divvol").style.display="block";
+}
+//-------------------------------------------------------------------------
+/*Função 2*/
+setTimeout(function iniciando(){
+document.getElementById("telainicial").style.backgroundColor="#FFFFFF";
+/*ou document.body.style.backgroundColor="#FFFFFF";*/
+
+document.getElementById("boasvindas").style.display="block";
+},2000);
+//--------------------------------------------------------------------------
+/*Função 3*/
+setTimeout(function encerramensagem(){
+var exibicao1 = document.getElementById("boasvindas");
+var exibicao2 = document.getElementById("seção");
+exibicao1.style.display= "none";
+exibicao2.style.display= "block";
+},6000);
+//-----------------------------------------------------------------------------------------------------------------------------------------
+/*Função 4*/
+function exibecampo3(){
+var opcaosel = document.getElementById("camposselec").value;
+var divvol = document.getElementById("divvol");
+var campo1 = document.getElementById("campo1").value;
+var campo2 = document.getElementById("campo2").value;
+var diferenca = 0;
+
+diferenca = campo1-campo2;
+
+if(campo1==0 || campo1>=101 || campo2==0 || campo2>=101 || diferenca<1)
+{
+alert("Regras: os campos 1 e 2 devem receber valores acima de 0 ou máximo igual a 100! O 1º valor deve ser superior ao 2º valor!");
+campo1 = document.getElementById("campo1").value = 93;
+campo2 = document.getElementById("campo2").value = 73;
+}
+
+if(campo1!=null && campo2!=null)
+{
+divvol.style.display="block";
+}
+
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------
+/*Função 5*/
+function calcula(){
+var opcaosel = document.getElementById("camposselec");
+var valorsel = opcaosel.options[opcaosel.selectedIndex].value;  
+var campo1 = document.getElementById("campo1").value;
+var campo2 = document.getElementById("campo2").value;
+var divvol = document.getElementById("divvol");
+var campo3 = document.getElementById("volumetotal").value;
+var resultado = 0;
+var volagua = 0;
+var diferenca = 0;
+
+diferenca = campo1-campo2;
+
+if(valorsel == "solução" && campo3>99 && diferenca>0){
+
+if(campo3>10000)
+{
+var campo3 = document.getElementById("volumetotal").value = 3000;
+}
+
+resultado = parseInt(campo3*campo2/campo1);
+volagua = parseInt(campo3-resultado);
+document.getElementById("água").innerHTML = volagua;
+document.getElementById("álcool").innerHTML = resultado;
+document.getElementById("solução").innerHTML = campo3;
+/*document.alcool70.submit();*/
+
+}else if(valorsel == "etanol" && campo3>99 && diferenca>0){
+
+if(campo3>10000)
+{
+var campo3 = document.getElementById("volumetotal").value = 3000;
+}
+
+resultado = parseInt((campo3*campo1/100)*100/campo2);
+volagua = parseInt(resultado-campo3);
+document.getElementById("água").innerHTML = volagua;
+document.getElementById("álcool").innerHTML = campo3;
+document.getElementById("solução").innerHTML = resultado;
+/*document.alcool70.submit();*/
+
+}else{
+document.getElementById("campo1").value="";
+document.getElementById("campo2").value="";
+document.getElementById("volumetotal").value="";
+alert("Regras: o 1° valor deve ser maior que o 2° valor! O campo 3 deve receber valor igual a 100 e no máximo 10000!");
+divvol.style.display="none";
+}
+
+}
+//-------------------------------------------------------------------------------------------------------------------------
+/*Função 6*/
+function reinicio(){
+document.getElementById("campo1").value="";
+document.getElementById("campo2").value="";
+document.getElementById("volumetotal").value="";
+}
+//------------------------------------------------------------------
+/*Função 7*/
+function encerrar(){
+window.close();
+}
+//------------------------------------------------------------------
+
+carregavalores();
+exibecampo3();
+calcula();
+reinicio();
+encerrar();
+
+</script>
+
+<style type="text/css">
+
+/* Responsividade dispositivos móveis: */
+@media only screen and (max-device-width: 500px){
+
+#conteudomobile{
+font-size: 12pt;
+text-align: left;
+width:99%;
+max-width:99%;
+height: auto;
+padding-left: 1%;
+}
+
+#boasvindas{
+display: none;
+text-align:center;
+font-size: 12pt; 
+margin-top:50%;
+}
+#campo1,#campo2,#volumetotal,#botao,#tabelmobile,#camposselec{
+font-size: 12pt;
+}
+#manual{
+font-size: 10pt;
+width: 100%;
+max-width: 100%;
+}
+#ajudamobile{
+font-size:10pt;
+color:#0000FF; 
+margin-left:10px;
+}
+}
+
+/*-------------------------------------*/
+
+body,html{
+width:100%;
+max-width:100%;
+font-family: Times New Roman;
+margin-left: 0px;
+}
+
+.bemvindo{
+display: none;
+text-align:center;
+margin-top:22.5%;
+}
+
+.conteudo{
+font-size: 20pt;
+text-align: left;
+width:97%;
+max-width:97%;
+height: auto;
+padding-left: 3%;
+}
+
+.caixa{
+margin-top: 20px;
+margin-bottom: 20px;
+width: 125px;
+max-width: 100%;
+font-family: Times New Roman;
+font-size: 20pt;
+background-color: rgba(0,0,255,0.25);
+border: 1px solid #0000FF;
+}
+
+.selec{
+margin-top: 20px;
+margin-bottom: 20px;
+width: auto;
+max-width: 100%;
+font-family: Times New Roman;
+font-size: 20pt;
+background-color: rgba(0,0,255,0.25);
+border: 1px solid #0000FF;
+}
+
+.tabela{
+margin-top: 10px;
+margin-bottom: 20px;
+width: auto;
+max-width: 100%;
+font-size: 20pt;
+background-color: rgba(0,0,255,0.5);
+border: 1px solid #0000FF;
+}
+
+.celula{
+border: 1px solid #0000FF;
+}
+
+.reiniciando, .finalizando, .botaopadrao{
+margin-top: 0px;
+margin-bottom: 0px;
+margin-left: 20px;
+width: auto;
+max-width: 100%;
+font-family: Times New Roman;
+font-size: 20pt;
+border: 1px solid #0000FF;
+}
+
+.reiniciando, .finalizando, .botaopadrao:hover{
+cursor: pointer;
+}
+
+.ajuda{
+font-size:20pt;
+color:#0000FF;
+margin-left:20px;
+}
+
+#manual,#abrir{
+display: none;
+}
+
+#abrir:checked~#manual{
+display: block;
+margin-top: -10px;
+}
+</style>
+
+</head>
+
+<body id="telainicial" style="background-color: #000000;">
+
+<div class="conteudo" id="conteudomobile">
+
+<div class="bemvindo" id="boasvindas">
+BEM VINDO AO <b><font color="#0000FF">ETASMART CONVERSOR </font></b>
+</div>
+
+<div id="seção" style="display:none;">
+
+<h1 align="center">CONVERSOR DE ETANOL</h1>
+
+<!-- início formulário -->
+
+Porcentagem do etanol combustível: <input type="number" id="campo1" min="0" max="999" placeholder="Ex.: 93" title="Este campo não pode ficar em branco!" class="caixa" required />%
+<button onClick="carregavalores()" id="botao" class="botaopadrao">Definir Padrão</button><br>
+
+Porcentagem do etanol resultante: <input type="number" id="campo2" min="0" max="999" placeholder="Ex.: 73" onChange="exibecampo3()" title="Este campo não pode ficar em branco!" class="caixa" required />%<br>
+
+Calcular por:<br>
+<select id="camposselec" class="selec">
+<option value="solução" />Volume total da solução
+<option value="etanol" />Volume de álcool combustível adquirido
+</select>
+
+<div id="divvol" style="display:none;">
+<input type="number" id="volumetotal" min="100" max="10000" placeholder="Ex.: 1000" onChange="calcula()" title="Valores aceitos: partindo de 100 até 10000!" class="caixa" required />mL<br>
+</div>
+
+<button id="botao" class="reiniciando" onClick="reinicio()">Reiniciar</button>
+<button id="botao" class="finalizando" onClick="encerrar()">Encerrar</button>
+
+<label for="abrir" id="ajudamobile" class="ajuda">Ajuda? Clique aqui.</label>
+<input type="checkbox" id="abrir">
+
+<!-- fim formulário -->
+
+<table border="1px" class="tabela" id="tabelmobile">
+<th class="celula">Quantidade de Água (mL)</th>
+<th class="celula">Quantidade de Etanol Combustível (mL)</th>
+<th class="celula">Volume total produzido (mL)</th>
+<tr class="celula">
+<td id="água" class="celula"></td>
+<td id="álcool" class="celula"></td>
+<td id="solução" class="celula"></td>
+</tr>
+</table>
+
+<div id="manual">
+
+<h3 align="center">Instruções para o usuário</h3>
+<h4 align="center">A) Campos, botões e resultados</h4>
+<p>
+<span style="padding-left:1%;"><b><big>I) O</big></b></span> <i><b>primeiro campo</b></i> deve ser preenchido com o 
+valor de porcentagem do etanol combustível adquirido no posto de abastecimento veicular.
+Esse etanol, normalmente possui porcentagem de <b>95%</b> à <b>93%</b> de etanol puro na solução 
+hidratada.<br>
+<b>Referências:</b><br>
+<a href="https://autopapo.com.br/noticia/alcool-posto-coronavirus/" >https://autopapo.com.br/noticia/alcool-posto-coronavirus/</a>;<br>
+<a href="https://www.brasilpostos.com.br/noticias/analise-de-combustiveis/etanol-anidro-ou-hidratado-voce-sabe-qual-a-diferenca/" >https://www.brasilpostos.com.br/noticias/analise-de-combustiveis/etanol-anidro-ou-hidratado-voce-sabe-qual-a-diferenca/</a>.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>II) O</big></b></span> <i><b>segundo campo</b></i> deve ser preenchido com o 
+valor de porcentagem do etanol que deseja-se adquirir após diluir o etanol combustível veicular.
+Esse etanol, normalmente possui porcentagem de <b>73%</b> à <b>70%</b> de etanol puro na solução 
+hidratada. O valor desse campo deve ser <b>obrigatoriamente menor</b> que o valor do primeiro campo.<br>
+<b>Referência:</b><br>
+<a href="https://istoe.com.br/alcool-em-gel-caseiro-e-eficiente-contra-o-coronavirus/" >https://istoe.com.br/alcool-em-gel-caseiro-e-eficiente-contra-o-coronavirus/</a>.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>III) O</big></b></span> <i><b>campo de seleção</b></i> possui as seguintes opções:<br>
+<b>1) Volume total da solução</b> - essa opção é indicada para quem não destinará todo o etanol combustível
+para produção do álcool 70% antisséptico;<br>
+<b>2) Volume de álcool combustível adquirido</b> - essa opção é indicada para quem destinará todo o etanol
+combustível para produção de álcool 70% antisséptico.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>IV) O</big></b></span> <i><b>último campo</b></i> deve ser preenchido com o 
+volume da solução a ser adquirida ou o volume de etanol combustível adquirido no posto de abastecimento veicular.
+A unidade de volume referente ao campo é o <b>mililitro</b>. Se o volume fornecido for equivalente a <b>1 Litro</b>, o 
+valor digitado deve ser <b>1000</b>.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>V) O</big></b></span> <i><b>botão Definir Padrão</b></i> é utilizado para carregar as porcentagens padrões nos <b>primeiro e segundo campos</b>.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>VI) O</big></b></span> <i><b>botão Reiniciar</b></i> é utilizado para limpar todos
+os valores definidos nos campos para 1 opção selecionada. Através desse botão, você estará liberado para efetuar um novo cálculo.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>VII) O</big></b></span> <i><b>botão Encerrar</b></i> é utilizado para sair/fechar
+a página do aplicativo.
+</p>
+
+<p>
+<span style="padding-left:1%;"><b><big>VIII) A</big></b></span> <i><b>tabela</b></i> ao final da página exibe os valores
+obtidos no cálculo. São eles:<br>
+<b>1) Coluna 1</b> - A quantidade de água em mililitros que deve ser adicionada à solução etanol hidratado;<br>
+<b>2) Coluna 2</b> - A quantidade de etanol combustível em mililitros a ser considerado ou adicionado à solução;<br>
+<b>3) Coluna 3</b> - A quantidade de etanol hidratado em mililitros resultante dos cálculos. Essa coluna refere-se
+a solução resultante.
+</p>
+
+<h4 align="center">B) Regras</h4>
+<p>
+<b><big><span style="padding-left:1%;">I) O</span></span></big></b> <b><i>primeiro campo</i></b> deve <b>obrigatoriamente</b> ter valor <b>superior</b> ao valor do <b><i>segundo campo</i></b>, sendo <b>somente números</b>.
+</p>
+
+<p>
+<b><big><span style="padding-left:1%;">II) O</span></big>s</b> <b><i>primeiro e segundo campos</i></b> devem <b>obrigatoriamente</b> serem preenchidos com valores <b>superiores</b> a <b>0 e menor ou igual a 100</b>.
+</p>
+
+<p>
+<b><big><span style="padding-left:1%;">III) O</span></big></b> <b><i>terceiro campo</i></b> deve <b>obrigatoriamente</b> ser preenchido com valor <b>superior</b> a <b>99 e menor ou igual a 10000</b>.
+</p>
+
+<p>
+<b><big><span style="padding-left:1%;">IV) O</span></big>s</b> <b><i>primeiro e segundo campos</i></b> assumem <b>respectivamente 93 </b>e <b>73 </b>em caso de ocorrência de erro.
+</p>
+
+<p>
+<b><big><span style="padding-left:1%;">V) O</span></big></b> <b><i>terceiro campo</i></b> assume os seguintes comportamentos em ocorrência de erro:<br>
+<b>1) Reinicia todos os campos para 1 opção selecionada</b> - quando um valor menor que 100 é inserido;<br>
+<b>2) Valor padrão de 3000</b> - quando um valor maior que 10000 é inserido.
+</p>
+
+<p align="right">
+<b>Desenvolvido por</b>: <i>Rondiney Rafael da Silva; Graduando em Análise e Desenvolvimento de Sistemas</i>.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
