@@ -2,35 +2,36 @@
 <html lang="pt-br">
 <head>
 <title>CONVERSOR DE ETANOL</title>
-  
+
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <script type="text/javascript">
 
 /*Função 1*/
-function carregavalores(){
-document.getElementById("campo1").value=93;
-document.getElementById("campo2").value=73;
-document.getElementById("divvol").style.display="block";
-}
-//-------------------------------------------------------------------------
-/*Função 2*/
 setTimeout(function iniciando(){
 document.getElementById("telainicial").style.backgroundColor="#FFFFFF";
+
 /*ou document.body.style.backgroundColor="#FFFFFF";*/
 
 document.getElementById("boasvindas").style.display="block";
 },2000);
 //--------------------------------------------------------------------------
-/*Função 3*/
+/*Função 2*/
 setTimeout(function encerramensagem(){
 var exibicao1 = document.getElementById("boasvindas");
 var exibicao2 = document.getElementById("seção");
 exibicao1.style.display= "none";
 exibicao2.style.display= "block";
 },6000);
+//--------------------------------------------------------------------------
+/*Função 3*/
+function carregavalores(){
+document.getElementById("campo1").value=93;
+document.getElementById("campo2").value=73;
+document.getElementById("divvol").style.display="block";
+}
 //-----------------------------------------------------------------------------------------------------------------------------------------
 /*Função 4*/
 function exibecampo3(){
@@ -107,19 +108,19 @@ divvol.style.display="none";
 }
 
 }
-//-------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 /*Função 6*/
 function reinicio(){
 document.getElementById("campo1").value="";
 document.getElementById("campo2").value="";
 document.getElementById("volumetotal").value="";
 }
-//------------------------------------------------------------------
+//--------------------------------------------------------------------------
 /*Função 7*/
 function encerrar(){
 window.close();
 }
-//------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
 carregavalores();
 exibecampo3();
